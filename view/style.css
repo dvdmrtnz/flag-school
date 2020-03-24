@@ -1,0 +1,38 @@
+
+body {
+	background: #F5F5F5;
+}
+
+div {
+	font-family: sans-serif;
+}
+
+div#content {
+	max-width: 400px;
+	width: 100%;
+	margin: auto;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+div.flag {
+	height: 150px;
+	max-height: 35vw;
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+img.flag {
+	max-width: 90%;
+	max-height: 90%;
+}
+
+div.info {
+	width: 50%;
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	box-sizing: border-box;
+}
