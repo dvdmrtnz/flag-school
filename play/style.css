@@ -28,11 +28,28 @@ div#content {
 	margin: auto;
 }
 
-div#score {
-	flex-grow: 0;
-	text-align: center;
+div#header {
+	display: flex;
+}
+
+div#back-button {
+	border-radius: 10px;
+	border: 1px solid black;
+	padding: 5px 10px;
+	display: inline-block;
 	font-size: 150%;
-	
+	margin: 0  3px 0 0;
+}
+
+div#score {
+	flex-grow: 1;
+	border-radius: 10px;
+	border: 1px solid black;
+	font-size: 150%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
 div#question {
