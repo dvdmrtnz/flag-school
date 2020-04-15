@@ -15,10 +15,16 @@ $(document).ready(function(){
 	}
 	game.setCurrentGroup(group);
 
+	// Display title 
+	$('div#title').text(game.currentGroup.name);
+	
+	// Display score
+	$('div#score').text(game.getScore() + "%");
+
 	// Display elements
 	for (var element of game.currentGroup.elements)
 	{
-		$('div#content').append(
+		$('div#list').append(
 			'<div class="flag">' +
 			'<img class="flag" src="../img/' + element.id + '.svg"/>' +
 			'</div>' + 
