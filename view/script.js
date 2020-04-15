@@ -22,7 +22,9 @@ $(document).ready(function(){
 			'<div class="flag">' +
 			'<img class="flag" src="../img/' + element.id + '.svg"/>' +
 			'</div>' + 
-			'<div class="info">' + element.name + '</div>');
+			'<div class="info">' + element.name + '<br>' + element.getScore() + 
+			'% (' + element.right + '/' + (element.right + element.wrong) + ')' +
+			'</div>');
 	}
 
 })
