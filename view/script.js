@@ -5,33 +5,24 @@ $(document).ready(function(){
 	game = new Game();
 
 	// Add data
+	game.addData(data);
+	
+	// Set current group
 	var group = param('g');
-	game.addData(data, group);
+	if (group == '')
+	{
+		group = 'world';
+	}
+	game.setCurrentGroup(group);
 
 	// Display elements
-	for (var i in game.data)
+	for (var element of game.currentGroup.elements)
 	{
-		var e = game.data[i];
 		$('div#content').append(
 			'<div class="flag">' +
-			'<img class="flag" src="../img/' + e.id + '.svg"/>' +
+			'<img class="flag" src="../img/' + element.id + '.svg"/>' +
 			'</div>' + 
-			'<div class="info">' + e.name + '</div>');
-		if (e.similar_to == undefined)
-		{
-			continue;
-		}
-		/*
-		for (var j of e.similar_to)
-		{
-			var f = game.data[j];
-			$('div#content').append(
-				'<div class="flag">' +
-				'<img class="flag" src="../img/' + f.id + '.svg"/>' +
-				'</div>' + 
-				'<div class="info">' + f.name + '</div>');
-		}
-		*/
+			'<div class="info">' + element.name + '</div>');
 	}
 
 })

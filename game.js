@@ -1,107 +1,357 @@
+
+/**
+ * Represents a game.
+ *
+ * @constructor
+ */
 function Game ()
 {
-	this.data = {};
-	this.stats = {};
-	this.similars = [];
+	this.data = 
+	{
+		groups: {},
+		elements: {}
+	};
 
 	this.options = [];
 	this.solution = {};
-	this.prevsolution = {};
-	this.group = "";
 
-	this.addData = function (data, groupid)
+	/**
+	 * Adds data to the game.
+	 *
+	 * @param {Object} rawData Raw data.
+	 */
+	Game.prototype.addData = function (rawData)
 	{
-		var groups = data.groups;
-		var elements = data.elements;
-		var similars = data.similars;
-
-		// Check if the group exists
-		this.group = 'world';
-		for (var i in groups)
+		// Groups
+		for (var rawGroup of rawData.groups)
 		{
-			if (groupid == groups[i].id)
-			{
-				this.group = groupid;
-			}
+			// Create group
+			var group = new Group();
+			group.id = rawGroup.id;
+			group.name = rawGroup.name;
+			
+			// Add group to data
+			this.data.groups[rawGroup.id] = group;
 		}
-
-		// Load elements
-		for (var e of elements)
+		
+		// Elements
+		for (var rawElement of rawData.elements)
 		{
-			if (e.group.indexOf(this.group) != -1)
+			// Create element
+			var element = new Element();
+			element.id = rawElement.id;
+			element.name = rawElement.name;
+			
+			// Add element to data
+			this.data.elements[rawElement.id] = element;
+			
+			// Add elements to groups
+			for (var g of rawElement.group)
 			{
-				var element = e;
-				element.right = 0;
-				element.wrong = 0;
-				this.data[e.id] = element;
-			}
-		}
-
-		// Load similars
-		for (var i in this.data)
-		{
-			var e = this.data[i];
-			e.similar_to = [];
-
-			// Check if it is in an array of similars
-			for (var f of similars)
-			{
-				if (f.indexOf(e.id) != -1)
+				// Check if group exists
+				if (this.data.groups[g] == undefined)
 				{
-					for (var g of f)
-					if (this.data[g] != undefined)
+					console.log('ERROR: Group "' + g + '" does not exist');
+					continue;
+				}
+				
+				// Add element to group
+				this.data.groups[g].elements.push(element);
+			}
+		}
+		
+		// Add similars
+		for (var rawSimilarArray of rawData.similars)
+		{
+			// Generate similar array
+			var similarArray = [];
+			for (var elementId of rawSimilarArray)
+			{
+				// Get element
+				var element = this.data.elements[elementId];
+				
+				// Check if element exists
+				if (element == undefined)
+				{
+					console.log('ERROR: Element "' + element + '" does not exist');
+					continue;
+				}
+				
+				// Add to similar array
+				similarArray.push(element);
+			}
+			
+			// Add similar arrays to elements
+			for (var elementA of similarArray)
+			{
+				for (var elementB of similarArray)
+				{
+					if (elementA != elementB)
 					{
-						e.similar_to.push(g);
+						elementA.similars.push(elementB);
 					}
 				}
 			}
 		}
-
-		// Load stats
-		var ck_stats = Cookies.getJSON('stats');
-		if (ck_stats != undefined)
+		
+		// Get stats
+		this._loadStats();
+	}
+	
+	/** 
+	 * Sets a group as the current one.
+	 *
+	 * @param {String} id Id of the group.
+	 */
+	Game.prototype.setCurrentGroup = function (id)
+	{
+		// Check if group exists
+		if (this.data.groups[id] == undefined)
 		{
-			this.stats = ck_stats;
+			console.log('ERROR: Group "' + id + '" does not exist');
+			return;
 		}
 		else
 		{
-			for (var i in groups)
-			{
-				var e = groups[i];
-				this.stats[e.id] = {};
-				this.stats[e.id].id = e.id;
-				this.stats[e.id].right = 0;
-				this.stats[e.id].wrong = 0;
-			}
-			Cookies.set('stats', this.stats);
+			this.currentGroup = this.data.groups[id];
 		}
 	}
+	
+	/** 
+	 * Gets the score.
+	 *
+	 * @returns {Number} Number between 0 and 100 representing a score.
+	 */
+	Game.prototype.getScore = function ()
+	{
+		var score = 0;
+		if (this.currentGroup != undefined)
+		{
+			score = this.currentGroup.getScore();
+		}
+		return score;
+	}
+	
+	/**
+	 * Gets a new set of options.
+	 *
+	 * @returns {Object} Object of options.
+	 */
+	Game.prototype.getOptions = function ()
+	{
+		// Empty options array
+		this.options = [];
+		
+		var q = this.currentGroup.getOptions(6);
+		this.solution = q.solution;
+		this.options = q.options;
+		
+		return this.options;
+	};
+	
+	/**
+	 * Select an option, updating stats and view.
+	 * 
+	 * @param {String} id Id of the selected option.
+	 */
+	Game.prototype.selectOption = function (id)
+	{
+		var selectedOption = this.data.elements[id];
+		
+		// Update stats
+		if (selectedOption == this.solution)
+		{
+			this.solution.right++;
+		}
+		else
+		{
+			this.solution.wrong++;
+			selectedOption.wrong++;
+		}
+		
+		// Save stats
+		this._saveStats();
+		
+		// Update view
+		if (selectedOption == this.solution)
+		{
+			$('div#' + id).addClass('correct');
+			
+			// Set timeout
+			timeout = 500;
+		}
+		else
+		{
+			$('div#' + id).addClass('incorrect');
+			$('div#' + this.solution.id).addClass('correct');
+			
+			// Set timeout
+			timeout = 1500;
+		}
+		
+		// Load a new question
+			setTimeout(function(){
+				reload();
+			}, timeout);
+	};
+	
+	/**
+	 * Reset the stats.
+	 */
+	Game.prototype.resetStats = function ()
+	{
+		for (var i in this.data.elements)
+		{
+			var e = this.data.elements[i];
+			
+			e.right = 0;
+			e.wrong = 0;
+		}
+		
+		this._saveStats();
+	}
+	
+	/**
+	 * Private function to save stats to local storage.
+	 *
+	 * @private
+	 */
+	Game.prototype._saveStats = function ()
+	{
+		var stats = {};
+		
+		for (var id in this.data.elements)
+		{
+			var e = this.data.elements[id];
+			
+			stats[id] = {};
+			stats[id].right = e.right;
+			stats[id].wrong = e.wrong;
+		}
+		
+		localStorage.setItem('stats', JSON.stringify(stats));
+		
+		this._loadStats();
+	}
+	
+	/**
+	 * Private function to load stats from local storage.
+	 * 
+	 * @private
+	 */
+	Game.prototype._loadStats = function ()
+	{
+		var stats = JSON.parse(localStorage.getItem('stats'));
+		
+		for (var id in stats)
+		{
+			this.data.elements[id].right = stats[id].right;
+			this.data.elements[id].wrong = stats[id].wrong;
+		}
+	}
+}
 
-	this.getOption = function ()
+/** 
+ * Represents a group of elements.
+ *
+ * @constructor
+ * @property {String} id Id of the group.
+ * @property {String} name Name of the group.
+ * @property {Array} elements Array of elements of the group.
+ */
+function Group ()
+{
+
+	this.id = '';
+	this.name = '';
+	this.elements = [];
+	
+	this._prevsolution = {};
+	this._solution = {};
+	this._options = [];
+	
+	/**
+	 * Gets the number of elements in this group.
+	 *
+	 * @returns {Number} Number of elements.
+	 */
+	Group.prototype.getNumberOfElements = function ()
+	{
+		return this.elements.length;
+	}
+	
+	/**
+	 * Gets a solution and an array of options from the group.
+	 *
+	 * @param {Integer} num Number of elements.
+	 * @returns {Object} Object of solution and array of options.
+	 */
+	Group.prototype.getOptions = function (num)
+	{
+		// Save previous solution
+		this._prevsolution = this._solution;
+		
+		// Reset options array
+		this._options = [];
+		
+		// Get solution
+		while (this._solution == this._prevsolution)
+		{
+			this._solution = this._getRandomElement();
+		}
+		
+		// Include solution in options array
+		this._options.push(this._solution);
+		
+		// Fill the rest of the options array
+		while (this._options.length < num)
+		{
+			console.log(this._options.length);
+			var e = this._getRandomElement();
+			if (this._options.indexOf(e) == -1)
+			{
+				this._options.push(e);
+			}
+		}
+		
+		// Shuffle options array 
+		this._options = shuffle(this._options);
+		
+		var options = {};
+		options.solution = this._solution;
+		options.options = this._options;
+		
+		return options;
+	}
+	
+	/**
+	 * Private function to get random elements.
+	 *
+	 * @returns {Element} Random element.
+	 * @private
+	 */
+	Group.prototype._getRandomElement = function ()
 	{
 		var weights = [];
 		var total = 0;
 
 		// Calculate weights
-		for (var i in this.data)
+		for (var e of this.elements)
 		{
-			var e = this.data[i];
-
 			var weight = 10;
 			weight *= Math.pow(0.5, e.right);
 			weight *= Math.pow(4, e.wrong);
 
 			// Give more weight to options similar to solution
-			if (this.solution != this.prevsolution)
+			if (this._solution != this._prevsolution)
 			{
-				var similar_to = this.solution.similar_to;
-				if (similar_to != undefined && similar_to.indexOf(e.id) != -1)
+				if (this._solution.similars != undefined && this._solution.similars.indexOf(e) != -1)
 				{
-					var count = similar_to.length;
+					var count = this._solution.similars.length;
 					weight *= (50 / count);
 				}
 			}
-
+			
 			weights.push(weight);
 			total += weight;
 		}
@@ -129,91 +379,71 @@ function Game ()
 				break;
 			}
 		}
-
+		
 		// Return element
-		var keys = Object.keys(this.data);
-		return this.data[keys[i]];
-
+		var keys = Object.keys(this.elements);
+		return this.elements[keys[i]];
 	}
-
-	this.loadOptions = function ()
+	
+	/** 
+	 * Gets the score of the group.
+	 *
+	 * @returns {Number} Number between 0 and 100 representing a score.
+	 */
+	Group.prototype.getScore = function ()
 	{
-		// Empty options array
-		this.options = [];
-
-		// Save previous solution
-		this.prevsolution = this.solution;
-
-		// Get solution
-		while (this.solution == this.prevsolution)
+		var score = 0;
+		
+		for (var e of this.elements)
 		{
-			this.options[0] = this.getOption();
-			this.solution = this.options[0];
+			score += e.getScore();
 		}
-
-		// Fill options array
-		for (var i = 0; i < 5; i++)
+		
+		var score = score / this.getNumberOfElements();
+		if (isNaN(score))
 		{
-			// Get random option
-			var option = this.getOption();
-			
-			// Check for duplicates and push to options array
-			if (this.options.indexOf(option) != -1)
-			{
-				i--;
-			}
-			else
-			{
-				this.options.push(option);
-			}
+			score = 0;
 		}
+		score = Math.round(score * 10) / 10;
+		
+		return score;
+	}
+}
 
-		// Shuffle array
-		this.options = shuffle(this.options);
-	};
-
-	this.checkOption = function (id)
+/**
+ * Represents an element.
+ *
+ * @constructor
+ * @property {String} id Id of the element.
+ * @property {String} name Name of the element.
+ * @property {Integer} right Number of times this element was selected correctly.
+ * @property {Integer} wrong Number of times this element was selected incorrectly.
+ * @property {Array} similar Array of similar elements to this element.
+ */
+function Element ()
+{
+	this.id;
+	this.name;
+	this.right = 0;
+	this.wrong = 0;
+	this.similars = [];
+	
+	/** 
+	 * Gets the score of the element.
+	 *
+	 * @returns {Number} Number between 0 and 100 representing a score.
+	 */
+	Element.prototype.getScore = function ()
 	{
-		// Get selected option
-		for (var option of this.options)
+		var score = 100 * this.right / (this.right + this.wrong);
+		if (isNaN(score))
 		{
-			if (option.id == id)
-			{
-				break;
-			}
+			score = 0;
 		}
-
-		// Check if correct
-		if (option == this.solution)
-		{
-			$('div#' + id).addClass('correct');
-			// Increment counters
-			this.stats[this.group].right++;
-			this.solution.right++;
-			// Save stats
-			Cookies.set('stats', this.stats);
-			// Set timeout
-			timeout = 500;
-		}
-		else
-		{
-			$('div#' + id).addClass('incorrect');
-			$('div#' + this.solution.id).addClass('correct');
-			// Increment counters
-			this.stats[this.group].wrong++;
-			this.solution.wrong++;
-			option.wrong++;
-			// Save stats
-			Cookies.set('stats', this.stats);
-			// Set timeout
-			timeout = 1500;
-		}
-
-		// Load a new question
-			setTimeout(function(){
-				reload();
-			}, timeout);
-	};
+		score = Math.round(score * 10) / 10;
+		
+		return score;
+	}
 }
 
 var getRandomNumber = function (max)

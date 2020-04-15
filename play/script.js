@@ -5,8 +5,15 @@ $(document).ready(function(){
 	game = new Game();
 
 	// Add data
+	game.addData(data);
+	
+	// Set current group
 	var group = param('g');
-	game.addData(data, group);
+	if (group == '')
+	{
+		group = 'world';
+	}
+	game.setCurrentGroup(group);
 
 	// Start a game
 	reload();
@@ -17,18 +24,10 @@ var game;
 var reload = function ()
 {
 	// Display score
-	var right = game.stats[game.group].right;
-	var wrong = game.stats[game.group].wrong;
-	var score = 100 * right / (right + wrong);
-	if (isNaN(score))
-	{
-		score = 0;
-	}
-	score = score.toFixed(2);
-	$('div#score').text('Score: ' + score + "%");
+	$('div#score').text('Score: ' + game.getScore() + "%");
 	
 	// Get options
-	var options = game.loadOptions();
+	var options = game.getOptions();
 
 	// Remove question
 	$('div#question').html('');
@@ -49,10 +48,10 @@ var reload = function ()
 			'<img src="../img/' + game.solution.id + '.svg"/></div>');
 
 		// Display options
-		for (var element of game.options)
+		for (var element of options)
 		{
 			$('div#options').append(
-				'<div class="option" id="' + element.id + '" onClick="game.checkOption(this.id)">' +
+				'<div class="option" id="' + element.id + '" onClick="game.selectOption(this.id)">' +
 				element.name + '</div>');
 		}
 	}
@@ -63,10 +62,10 @@ var reload = function ()
 		// Display name
 		$('div#question').append('<div id="text">' + game.solution.name + '</div>');
 
-		for (var element of game.options)
+		for (var element of options)
 		{
 			$('div#options').append(
-				'<div class="option" id="' + element.id + '" onClick="game.checkOption(this.id)">' +
+				'<div class="option" id="' + element.id + '" onClick="game.selectOption(this.id)">' +
 				'<div class="container">' +
 				'<img src="../img/' + element.id + '.svg"/>' + '</div></div>');
 		}
