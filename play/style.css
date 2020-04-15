@@ -41,10 +41,22 @@ div#back-button {
 	margin: 0  3px 0 0;
 }
 
-div#score {
-	flex-grow: 1;
+div#title {
+	flex-grow: 2;
 	border-radius: 10px;
 	border: 1px solid black;
+	margin: 0 3px 0 0;
+	font-size: 150%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+div#score {
+	border-radius: 10px;
+	border: 1px solid black;
+	padding: 5px 10px;
 	font-size: 150%;
 	display: flex;
 	justify-content: center;

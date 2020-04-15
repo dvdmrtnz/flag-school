@@ -23,8 +23,11 @@ var game;
 
 var reload = function ()
 {
+	// Display title 
+	$('div#title').text(game.currentGroup.name);
+	
 	// Display score
-	$('div#score').text('Score: ' + game.getScore() + "%");
+	$('div#score').text(game.getScore() + "%");
 	
 	// Get options
 	var options = game.getOptions();
