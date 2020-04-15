@@ -13,7 +13,18 @@ div#content {
 	margin: auto;
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 50px;
+	margin-bottom: 20px;
+}
+
+div#footer {
+	padding-top: 30px;
+	font-size: 60%;
+	text-align: right;
+}
+
+div#list {
+	display: flex;
+	flex-direction: column;
 }
 
 div.option-wrapper {

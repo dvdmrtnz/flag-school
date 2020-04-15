@@ -12,7 +12,7 @@ $(document).ready(function(){
 		var group = game.data.groups[id];
 		
 		// Display groups
-		$('div#content').append(
+		$('div#list').append(
 			'<div class="option-wrapper">' +
 				'<div class="option">' + 
 					'<div class="title">' +
