@@ -338,7 +338,20 @@ function Group ()
 		// Calculate weights
 		for (var e of this.elements)
 		{
-			var weight = 10;
+			var weight = 100;
+
+			if (e.right > e.wrong)
+			{
+				// Give less weight to options that have been guessed correctly
+				weight /= (e.right - e.wrong + 1);
+			}
+			else if (e.right < e.wrong)
+			{
+				// Give more weight to options that have been guessed incorrectly
+				weight *= (e.wrong - e.right + 1);
+			}
+
+			/*
 			weight *= Math.pow(0.5, e.right);
 			weight *= Math.pow(4, e.wrong);
 
@@ -351,6 +364,7 @@ function Group ()
 					weight *= (50 / count);
 				}
 			}
+			*/
 			
 			weights.push(weight);
 			total += weight;
