@@ -5,7 +5,6 @@ html {
 }
 
 body {
-	background: #F5F5F5;
 	box-sizing: border-box;
 	width: calc(100% - 16px);
 	height: calc(100% - 16px);
@@ -34,18 +33,16 @@ div#header {
 
 div#back-button {
 	border-radius: 10px;
-	border: 1px solid black;
 	padding: 5px 10px;
 	display: inline-block;
 	font-size: 150%;
-	margin: 0  3px 0 0;
+	margin: 0  4px 0 0;
 }
 
 div#title {
 	flex-grow: 2;
 	border-radius: 10px;
-	border: 1px solid black;
-	margin: 0 3px 0 0;
+	margin: 0 4px 0 0;
 	font-size: 150%;
 	display: flex;
 	justify-content: center;
@@ -55,7 +52,6 @@ div#title {
 
 div#score {
 	border-radius: 10px;
-	border: 1px solid black;
 	padding: 5px 10px;
 	font-size: 150%;
 	display: flex;
@@ -72,7 +68,8 @@ div#question {
 	justify-content: center;
 	align-items: center;
 	box-sizing: border-box;
-	border: 1px solid #F5F5F5;
+	border-radius: 10px;
+	margin: 4px 0;
 }
 
 div#question div.container {
@@ -110,8 +107,6 @@ div.option {
 	box-sizing: border-box;
 	overflow: auto;
 	border-radius: 10px;
-	border: 1px solid black;
-	background: #E8E8E8;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
@@ -144,10 +139,56 @@ div.option div.container img {
 	box-sizing: border-box;
 }
 
+/* LIGHT MODE */
+
+body {
+	background: #E8E8E8;
+}
+
+div {
+	color: #2B2B2B;
+}
+
+div#back-button, div#title, div#score, div#question, div.option {
+	background: #F5F5F5;
+}
+
+div#question div.container img, div.option div.container img {
+	filter: drop-shadow(0 0 10px #E1E1E1);
+}
+
 div.incorrect {
-	background-color: red;
+	background-color: #FF6962;
 }
 
 div.correct {
-	background-color: green;
+	background-color: #77DD78;
+}
+
+/* DARK MODE */
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background: #242424;
+	}
+
+	div {
+		color: #E1E1E1;
+	}
+
+	div#back-button, div#title, div#score, div#question, div.option {
+		background: #373737;
+	}
+
+	div#question div.container img, div.option div.container img {
+		filter: drop-shadow(0 0 10px #2B2B2B);
+	}
+
+	div.incorrect {
+		background-color: #832F2C;
+	}
+
+	div.correct {
+		background-color: #2A7E2B;
+	}
 }

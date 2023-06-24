@@ -1,8 +1,4 @@
 
-body {
-	background: #F5F5F5;
-}
-
 div {
 	font-family: sans-serif;
 }
@@ -37,7 +33,6 @@ div.option {
 	width: calc(60% - 5px);
 	display: flex;
 	flex-direction: column;
-	border: 1px solid black;
 	border-radius: 10px;
 	padding: 15px;
 	box-sizing: border-box;
@@ -76,7 +71,6 @@ div.button:first-child {
 }
 
 div.button {
-	border: 1px solid black;
 	border-radius: 10px;
 	padding: 15px;
 	box-sizing: border-box;
@@ -84,4 +78,34 @@ div.button {
 	width: 100%;
 	display: flex;
 	align-items: center;
+}
+
+/* LIGHT MODE */
+
+body {
+	background: #E8E8E8;
+}
+
+div {
+	color: #2B2B2B;
+}
+
+div.option, div.button {
+	background: #F5F5F5;
+}
+
+/* DARK MODE */
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background: #242424;
+	}
+
+	div {
+		color: #E1E1E1;
+	}
+
+	div.option, div.button {
+		background: #373737;
+	}
 }

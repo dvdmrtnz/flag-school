@@ -25,11 +25,13 @@ $(document).ready(function(){
 	for (var element of game.currentGroup.elements)
 	{
 		$('div#list').append(
+			'<div class="option">' +
 			'<div class="flag">' +
 			'<img class="flag" src="../img/' + element.id + '.svg"/>' +
 			'</div>' + 
 			'<div class="info">' + element.name + '<br>' + element.getScore() + 
 			'% (' + element.right + '/' + (element.right + element.wrong) + ')' +
+			'</div>' + 
 			'</div>');
 	}
 

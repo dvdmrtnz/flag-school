@@ -1,8 +1,4 @@
 
-body {
-	background: #F5F5F5;
-}
-
 div {
 	font-family: sans-serif;
 }
@@ -21,18 +17,16 @@ div#header {
 
 div#back-button {
 	border-radius: 10px;
-	border: 1px solid black;
 	padding: 5px 10px;
 	display: inline-block;
 	font-size: 150%;
-	margin: 0  3px 0 0;
+	margin: 0  4px 0 0;
 }
 
 div#title {
 	flex-grow: 2;
 	border-radius: 10px;
-	border: 1px solid black;
-	margin: 0 3px 0 0;
+	margin: 0 4px 0 0;
 	font-size: 150%;
 	display: flex;
 	justify-content: center;
@@ -42,7 +36,6 @@ div#title {
 
 div#score {
 	border-radius: 10px;
-	border: 1px solid black;
 	padding: 5px 10px;
 	font-size: 150%;
 	display: flex;
@@ -53,7 +46,13 @@ div#score {
 
 div#list {
 	display: flex;
-	flex-flow: row wrap;
+	flex-direction: column;
+}
+
+div.option {
+	border-radius: 10px;
+	margin: 4px 0 0 0;
+	display: flex;
 }
 
 div.flag {
@@ -76,4 +75,42 @@ div.info {
 	align-items: center;
 	padding: 10px;
 	box-sizing: border-box;
+}
+
+/* LIGHT MODE */
+
+body {
+	background: #E5E5E5;
+}
+
+div {
+	color: #2B2B2B;
+}
+
+div#back-button, div#title, div#score, div#question, div.option {
+	background: #F5F5F5;
+}
+
+img.flag {
+	filter: drop-shadow(0 0 10px #E1E1E1);
+}
+
+/* DARK MODE */
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background: #242424;
+	}
+
+	div {
+		color: #E1E1E1;
+	}
+
+	div#back-button, div#title, div#score, div#question, div.option {
+		background: #373737;
+	}
+
+	img.flag {
+		filter: drop-shadow(0 0 10px #2B2B2B);
+	}
 }
