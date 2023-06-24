@@ -1,4 +1,9 @@
 {
   "name": "flag-school",
-  "display": "standalone"
+  "display": "standalone",
+  "icons": [{
+    "src": "img/icon-180.png",
+    "sizes": "180x180",
+    "type": "image/png"
+  }]
 }
