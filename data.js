@@ -32,6 +32,10 @@ var data = {
 		{
 			"id": "us",
 			"name": "United States",
+		},
+		{
+			"id": "es",
+			"name": "España",
 		}
 	],
 
@@ -310,6 +314,101 @@ var data = {
 			"id": "es",
 			"name": "Spain",
 			"group": ["eu", "europe", "world"],
+		},
+		{
+			"id": "es-an",
+			"name": "Andalucía",
+			"group": ["es"],
+		},
+		{
+			"id": "es-ar",
+			"name": "Aragón",
+			"group": ["es"],
+		},
+		{
+			"id": "es-as",
+			"name": "Principado de Asturias",
+			"group": ["es"],
+		},
+		{
+			"id": "es-cb",
+			"name": "Cantabria",
+			"group": ["es"],
+		},
+		{
+			"id": "es-ce",
+			"name": "Ceuta",
+			"group": ["es"],
+		},
+		{
+			"id": "es-cl",
+			"name": "Castilla y León",
+			"group": ["es"],
+		},
+		{
+			"id": "es-cm",
+			"name": "Castilla-La Mancha",
+			"group": ["es"],
+		},
+		{
+			"id": "es-cn",
+			"name": "Canarias",
+			"group": ["es"],
+		},
+		{
+			"id": "es-ct",
+			"name": "Cataluña",
+			"group": ["es"],
+		},
+		{
+			"id": "es-ex",
+			"name": "Extremadura",
+			"group": ["es"],
+		},
+		{
+			"id": "es-ga",
+			"name": "Galicia",
+			"group": ["es"],
+		},
+		{
+			"id": "es-ib",
+			"name": "Islas Baleares",
+			"group": ["es"],
+		},
+		{
+			"id": "es-mc",
+			"name": "Región de Murcia",
+			"group": ["es"],
+		},
+		{
+			"id": "es-md",
+			"name": "Comunidad de Madrid",
+			"group": ["es"],
+		},
+		{
+			"id": "es-ml",
+			"name": "Melilla",
+			"group": ["es"],
+		},
+		{
+			"id": "es-nc",
+			"name": "Comunidad Foral de Navarra",
+			"group": ["es"],
+		},
+		{
+			"id": "es-pv",
+			"name": "País Vasco",
+			"group": ["es"],
+		},
+		{
+			"id": "es-ri",
+			"name": "La Rioja",
+			"group": ["es"],
+		},
+		{
+			"id": "es-vc",
+			"name": "Comunidad Valenciana",
+			"group": ["es"],
 		},
 		{
 			"id": "et",
