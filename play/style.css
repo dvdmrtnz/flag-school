@@ -25,6 +25,7 @@ div#content {
 	min-height: 400px;
 	max-height: 800px;
 	margin: auto;
+	padding-bottom: env(safe-area-inset-bottom);
 }
 
 div#header {
