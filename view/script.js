@@ -17,9 +17,6 @@ $(document).ready(function(){
 
 	// Display title 
 	$('div#title').text(game.currentGroup.name);
-	
-	// Display score
-	$('div#score').text(game.getScore() + "%");
 
 	// Display elements
 	for (var element of game.currentGroup.elements)

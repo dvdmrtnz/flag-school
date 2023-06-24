@@ -15,15 +15,16 @@ $(document).ready(function(){
 		$('div#list').append(
 			'<div class="option-wrapper">' +
 				'<div class="option">' + 
-					'<div class="title-wrapper">' +
-						'<div class="title">' + group.name + '</div>' +
-						'<i class="fa-solid fa-list" onclick="window.location=\'view/?g=' + group.id + '\';"></i>' +
-					'</div>' +
+					'<div class="title">' + group.name + '</div>' +
 					'<div class="info">' +
-						'<ul>' + 
-							'<li>' + group.getNumberOfElements() + ' flags</li>' +
-							'<li>Score: ' + group.getScore()  + '%</li>' +
-						'</ul>' +
+						'<div class="infoElement" onclick="window.location=\'view/?g=' + group.id + '\';">' +
+							'<i class="fa-solid fa-flag"></i>' +
+							'<div class="infoNumber">' + group.getNumberOfElements() + '</div>' +
+						'</div>' +
+						'<div class="infoElement">' +
+							'<i class="fa-solid fa-bolt gold"></i>' +
+							'<div class="infoNumber">' + group.getLongestStreak() + '</div>' +
+						'</div>' +
 					'</div>' +
 				'</div>' +
 				'<div class="button" onclick="window.location=\'play/?g=' + group.id + '\';">' + 

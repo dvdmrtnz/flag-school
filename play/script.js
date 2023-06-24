@@ -26,8 +26,11 @@ var reload = function ()
 	// Display title 
 	$('div#title').text(game.currentGroup.name);
 	
-	// Display score
-	$('div#score').text(game.getScore() + "%");
+	// Display longest streak
+	$('div#longestStreak').text(game.getLongestStreak());
+
+	// Display current streak
+	$('div#currentStreak').text(game.getCurrentStreak());
 	
 	// Get options
 	var options = game.getOptions();

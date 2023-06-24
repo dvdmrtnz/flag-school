@@ -14,6 +14,7 @@ function Game ()
 
 	this.options = [];
 	this.solution = {};
+	this.currentGroup = {};
 
 	/**
 	 * Adds data to the game.
@@ -98,7 +99,7 @@ function Game ()
 		this._loadStats();
 	}
 	
-	/** 
+	/**
 	 * Sets a group as the current one.
 	 *
 	 * @param {String} id Id of the group.
@@ -116,20 +117,35 @@ function Game ()
 			this.currentGroup = this.data.groups[id];
 		}
 	}
-	
+
 	/** 
-	 * Gets the score.
+	 * Gets the longest streak of the current group.
 	 *
-	 * @returns {Number} Number between 0 and 100 representing a score.
+	 * @returns {Number} Number of correct answers in the longest streak of the current group.
 	 */
-	Game.prototype.getScore = function ()
+	Game.prototype.getLongestStreak = function ()
 	{
-		var score = 0;
+		var longestStreak = 0;
 		if (this.currentGroup != undefined)
 		{
-			score = this.currentGroup.getScore();
+			longestStreak = this.currentGroup.getLongestStreak();
 		}
-		return score;
+		return longestStreak;
+	}
+
+	/** 
+	 * Gets the current streak of the current group.
+	 *
+	 * @returns {Number} Number of correct answers in the current streak of the current group.
+	 */
+	Game.prototype.getCurrentStreak = function ()
+	{
+		var currentStreak = 0;
+		if (this.currentGroup != undefined)
+		{
+			currentStreak = this.currentGroup.getCurrentStreak();
+		}
+		return currentStreak;
 	}
 	
 	/**
@@ -158,15 +174,26 @@ function Game ()
 	{
 		var selectedOption = this.data.elements[id];
 		
-		// Update stats
 		if (selectedOption == this.solution)
 		{
+			// Update element stats
 			this.solution.right++;
+
+			// Update group stats
+			this.currentGroup.currentStreak++;
+			if (this.currentGroup.currentStreak > this.currentGroup.longestStreak)
+			{
+				this.currentGroup.longestStreak = this.currentGroup.currentStreak;
+			}
 		}
 		else
 		{
+			// Update element stats
 			this.solution.wrong++;
 			selectedOption.wrong++;
+
+			// Update group stats
+			this.currentGroup.currentStreak = 0;
 		}
 		
 		// Save stats
@@ -200,12 +227,22 @@ function Game ()
 	 */
 	Game.prototype.resetStats = function ()
 	{
+		// Reset elements stats
 		for (var i in this.data.elements)
 		{
 			var e = this.data.elements[i];
 			
 			e.right = 0;
 			e.wrong = 0;
+		}
+
+		// Reset groups stats
+		for (var i in this.data.groups)
+		{
+			var e = this.data.groups[i];
+			
+			e.currentStreak = 0;
+			e.longestStreak = 0;
 		}
 		
 		this._saveStats();
@@ -218,18 +255,28 @@ function Game ()
 	 */
 	Game.prototype._saveStats = function ()
 	{
-		var stats = {};
-		
+		// Save elements stats
+		var elements = {};
 		for (var id in this.data.elements)
 		{
 			var e = this.data.elements[id];
 			
-			stats[id] = {};
-			stats[id].right = e.right;
-			stats[id].wrong = e.wrong;
+			elements[id] = {};
+			elements[id].right = e.right;
+			elements[id].wrong = e.wrong;
 		}
-		
-		localStorage.setItem('stats', JSON.stringify(stats));
+		localStorage.setItem('elements', JSON.stringify(elements));
+
+		// Save groups stats
+		var groups = {};
+		for (var id in this.data.groups)
+		{
+			var e = this.data.groups[id];
+			
+			groups[id] = {};
+			groups[id].longestStreak = e.longestStreak;
+		}
+		localStorage.setItem('groups', JSON.stringify(groups));
 		
 		this._loadStats();
 	}
@@ -241,12 +288,19 @@ function Game ()
 	 */
 	Game.prototype._loadStats = function ()
 	{
-		var stats = JSON.parse(localStorage.getItem('stats'));
-		
-		for (var id in stats)
+		// Load elements stats
+		var elements = JSON.parse(localStorage.getItem('elements'));
+		for (var id in elements)
 		{
-			this.data.elements[id].right = stats[id].right;
-			this.data.elements[id].wrong = stats[id].wrong;
+			this.data.elements[id].right = elements[id].right;
+			this.data.elements[id].wrong = elements[id].wrong;
+		}
+
+		// Load groups stats
+		var groups = JSON.parse(localStorage.getItem('groups'));
+		for (var id in groups)
+		{
+			this.data.groups[id].longestStreak = groups[id].longestStreak;
 		}
 	}
 }
@@ -265,6 +319,8 @@ function Group ()
 	this.id = '';
 	this.name = '';
 	this.elements = [];
+	this.currentStreak = 0;
+	this.longestStreak = 0;
 	
 	this._prevsolution = {};
 	this._solution = {};
@@ -398,29 +454,25 @@ function Group ()
 		var keys = Object.keys(this.elements);
 		return this.elements[keys[i]];
 	}
-	
+
 	/** 
-	 * Gets the score of the group.
+	 * Gets the current streak of the group.
 	 *
-	 * @returns {Number} Number between 0 and 100 representing a score.
+	 * @returns {Number} Number of correct answers in the current streak of the group.
 	 */
-	Group.prototype.getScore = function ()
+	Group.prototype.getCurrentStreak = function ()
 	{
-		var score = 0;
-		
-		for (var e of this.elements)
-		{
-			score += e.getScore();
-		}
-		
-		var score = score / this.getNumberOfElements();
-		if (isNaN(score))
-		{
-			score = 0;
-		}
-		score = Math.round(score * 10) / 10;
-		
-		return score;
+		return this.currentStreak;
+	}
+
+	/** 
+	 * Gets the current streak of the group.
+	 *
+	 * @returns {Number} Number of correct answers in the longest streak of the group.
+	 */
+	Group.prototype.getLongestStreak = function ()
+	{
+		return this.longestStreak;
 	}
 }
 
