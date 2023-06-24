@@ -30,7 +30,7 @@ div.option-wrapper {
 }
 
 div.option {
-	width: calc(60% - 5px);
+	width: calc(70% - 5px);
 	display: flex;
 	flex-direction: column;
 	border-radius: 10px;
@@ -38,8 +38,13 @@ div.option {
 	box-sizing: border-box;
 }
 
-div.option div.title {
+div.option div.title-wrapper {
 	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+div.option div.title {
 	font-size: 150%;
 	font-weight: bold;
 	text-align: left;
@@ -60,24 +65,15 @@ div.option div.info li {
 	margin: 3px 0 0 0;
 }
 
-
-div.button-wrapper {
-	width: 40%;
-	margin: 0 0 0 5px;
-}
-
-div.button:first-child {
-	margin: 0 0 5px 0;
-}
-
 div.button {
+	width: 30%;
+	margin: 0 0 0 5px;
 	border-radius: 10px;
 	padding: 15px;
 	box-sizing: border-box;
-	height: calc(50% - 2.5px);
-	width: 100%;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
 
 /* LIGHT MODE */

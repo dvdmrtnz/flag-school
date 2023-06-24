@@ -15,8 +15,9 @@ $(document).ready(function(){
 		$('div#list').append(
 			'<div class="option-wrapper">' +
 				'<div class="option">' + 
-					'<div class="title">' +
-						group.name +
+					'<div class="title-wrapper">' +
+						'<div class="title">' + group.name + '</div>' +
+						'<i class="fa-solid fa-list" onclick="window.location=\'view/?g=' + group.id + '\';"></i>' +
 					'</div>' +
 					'<div class="info">' +
 						'<ul>' + 
@@ -25,10 +26,9 @@ $(document).ready(function(){
 						'</ul>' +
 					'</div>' +
 				'</div>' +
-				'<div class="button-wrapper">' +
-					'<div class="button" onclick="window.location=\'play/?g=' + group.id + '\';">Play</div>' +
-					'<div class="button" onclick="window.location=\'view/?g=' + group.id + '\';">View</div>' +
-				'</div class="button-wrapper">' +
+				'<div class="button" onclick="window.location=\'play/?g=' + group.id + '\';">' + 
+					'<i class="fa-solid fa-play fa-3x"></i>' +
+				'</div>' +
 			'</div class="option-wrapper">');
 	}
 })
