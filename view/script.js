@@ -27,7 +27,7 @@ $(document).ready(function(){
 		$('div#list').append(
 			'<div class="option">' +
 			'<div class="flag">' +
-			'<img class="flag" src="../img/' + element.id + '.svg"/>' +
+			'<img class="flag" src="../img/flag/' + element.id + '.svg"/>' +
 			'</div>' + 
 			'<div class="info">' + element.name + '<br>' + element.getScore() + 
 			'% (' + element.right + '/' + (element.right + element.wrong) + ')' +

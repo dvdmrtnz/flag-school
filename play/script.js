@@ -48,7 +48,7 @@ var reload = function ()
 		// Display image
 		$('div#question').append(
 			'<div class="container">' +
-			'<img src="../img/' + game.solution.id + '.svg"/></div>');
+			'<img src="../img/flag/' + game.solution.id + '.svg"/></div>');
 
 		// Display options
 		for (var element of options)
@@ -70,7 +70,7 @@ var reload = function ()
 			$('div#options').append(
 				'<div class="option" id="' + element.id + '" onClick="game.selectOption(this.id)">' +
 				'<div class="container">' +
-				'<img src="../img/' + element.id + '.svg"/>' + '</div></div>');
+				'<img src="../img/flag/' + element.id + '.svg"/>' + '</div></div>');
 		}
 	}
 }
