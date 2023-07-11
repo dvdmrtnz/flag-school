@@ -34,6 +34,10 @@ var data = {
 			"name": "United States",
 		},
 		{
+			"id": "de",
+			"name": "Deutschland",
+		},
+		{
 			"id": "es",
 			"name": "España",
 		}
@@ -264,6 +268,86 @@ var data = {
 			"id": "de",
 			"name": "Germany",
 			"group": ["eu", "europe", "world"],
+		},
+		{
+			"id": "de-bw",
+			"name": "Baden-Württemberg",
+			"group": ["de"],
+		},
+		{
+			"id": "de-by",
+			"name": "Bayern",
+			"group": ["de"],
+		},
+		{
+			"id": "de-be",
+			"name": "Berlin",
+			"group": ["de"],
+		},
+		{
+			"id": "de-bb",
+			"name": "Brandenburg",
+			"group": ["de"],
+		},
+		{
+			"id": "de-hb",
+			"name": "Bremen",
+			"group": ["de"],
+		},
+		{
+			"id": "de-hh",
+			"name": "Hamburg",
+			"group": ["de"],
+		},
+		{
+			"id": "de-he",
+			"name": "Hessen",
+			"group": ["de"],
+		},
+		{
+			"id": "de-mv",
+			"name": "Mecklenburg-Vorpommern",
+			"group": ["de"],
+		},
+		{
+			"id": "de-ni",
+			"name": "Niedersachsen",
+			"group": ["de"],
+		},
+		{
+			"id": "de-nw",
+			"name": "Nordrhein-Westfalen",
+			"group": ["de"],
+		},
+		{
+			"id": "de-rp",
+			"name": "Rheinland-Pfalz",
+			"group": ["de"],
+		},
+		{
+			"id": "de-sl",
+			"name": "Saarland",
+			"group": ["de"],
+		},
+		{
+			"id": "de-sn",
+			"name": "Sachsen",
+			"group": ["de"],
+		},
+		{
+			"id": "de-st",
+			"name": "Sachsen-Anhalt",
+			"group": ["de"],
+		},
+		{
+			"id": "de-sh",
+			"name": "Schleswig-Holstein",
+			"group": ["de"],
+		},
+		{
+			"id": "de-th",
+			"name": "Thüringen",
+			"group": ["de"],
 		},
 		{
 			"id": "dj",
