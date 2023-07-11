@@ -58,7 +58,7 @@ div#title {
 	text-align: center;
 }
 
-div.streak {
+div.streak, div.highlightedStreak {
 	margin: 0 0 0 4px;
 	border-radius: 10px;
 	padding: 10px;
@@ -70,7 +70,7 @@ div.streak {
 	text-align: center;
 }
 
-div#longestStreak, div#currentStreak {
+div.streakValue {
 	margin: 0 0 0 3px;
 }
 
@@ -179,8 +179,16 @@ div.correct {
 	background-color: #77DD78;
 }
 
-i.gold {
+div#longestStreak i {
 	color: gold;
+}
+
+div.highlightedStreak#longestStreak {
+	background: gold;
+}
+
+div.highlightedStreak#longestStreak * {
+	color: black;
 }
 
 /* DARK MODE */

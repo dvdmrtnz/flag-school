@@ -23,14 +23,29 @@ var game;
 
 var reload = function ()
 {
-	// Display title 
+	// Display title
 	$('div#title').text(game.currentGroup.name);
 	
-	// Display longest streak
-	$('div#longestStreak').text(game.getLongestStreak());
+	if (game.getLongestStreak() == game.getCurrentStreak()) 
+	{
+		// Hide current streak
+		$('div#currentStreak').hide();
+		// Set longest streak style to highlightedStreak
+		$('div#longestStreak').attr('class', 'highlightedStreak')
+	}
+	else
+	{
+		// Show current streak
+		$('div#currentStreak').show();
+		// Set longest streak style back to streak
+		$('div#longestStreak').attr('class', 'streak')
+	}
 
-	// Display current streak
-	$('div#currentStreak').text(game.getCurrentStreak());
+	// Update longest streak
+	$('div#longestStreak div.streakValue').text(game.getLongestStreak());
+
+	// Update current streak
+	$('div#currentStreak div.streakValue').text(game.getCurrentStreak());
 	
 	// Get options
 	var options = game.getOptions();
