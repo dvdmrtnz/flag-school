@@ -240,14 +240,14 @@ var data = {
 			"group": ["oceania", "world"],
 		},
 		{
-			"id": "cm",
-			"name": "Cameroon",
-			"group": ["africa", "world"],
-		},
-		{
 			"id": "cl",
 			"name": "Chile",
 			"group": ["americas", "world"],
+		},
+		{
+			"id": "cm",
+			"name": "Cameroon",
+			"group": ["africa", "world"],
 		},
 		{
 			"id": "cn",
@@ -290,6 +290,16 @@ var data = {
 			"group": ["eu", "europe", "world"],
 		},
 		{
+			"id": "de-bb",
+			"name": "Brandenburg",
+			"group": ["de"],
+		},
+		{
+			"id": "de-be",
+			"name": "Berlin",
+			"group": ["de"],
+		},
+		{
 			"id": "de-bw",
 			"name": "Baden-Württemberg",
 			"group": ["de"],
@@ -300,28 +310,18 @@ var data = {
 			"group": ["de"],
 		},
 		{
-			"id": "de-be",
-			"name": "Berlin",
-			"group": ["de"],
-		},
-		{
-			"id": "de-bb",
-			"name": "Brandenburg",
-			"group": ["de"],
-		},
-		{
 			"id": "de-hb",
 			"name": "Bremen",
 			"group": ["de"],
 		},
 		{
-			"id": "de-hh",
-			"name": "Hamburg",
+			"id": "de-he",
+			"name": "Hessen",
 			"group": ["de"],
 		},
 		{
-			"id": "de-he",
-			"name": "Hessen",
+			"id": "de-hh",
+			"name": "Hamburg",
 			"group": ["de"],
 		},
 		{
@@ -345,6 +345,11 @@ var data = {
 			"group": ["de"],
 		},
 		{
+			"id": "de-sh",
+			"name": "Schleswig-Holstein",
+			"group": ["de"],
+		},
+		{
 			"id": "de-sl",
 			"name": "Saarland",
 			"group": ["de"],
@@ -357,11 +362,6 @@ var data = {
 		{
 			"id": "de-st",
 			"name": "Sachsen-Anhalt",
-			"group": ["de"],
-		},
-		{
-			"id": "de-sh",
-			"name": "Schleswig-Holstein",
 			"group": ["de"],
 		},
 		{
@@ -1205,23 +1205,23 @@ var data = {
 			"group": ["americas", "world"],
 		},
 		{
-			"id": "us-al",
-			"name": "Alabama",
-			"group": ["us"],
-		},
-		{
 			"id": "us-ak",
 			"name": "Alaska",
 			"group": ["us"],
 		},
 		{
-			"id": "us-az",
-			"name": "Arizona",
+			"id": "us-al",
+			"name": "Alabama",
 			"group": ["us"],
 		},
 		{
 			"id": "us-ar",
 			"name": "Arkansas",
+			"group": ["us"],
+		},
+		{
+			"id": "us-az",
+			"name": "Arizona",
 			"group": ["us"],
 		},
 		{
@@ -1260,6 +1260,11 @@ var data = {
 			"group": ["us"],
 		},
 		{
+			"id": "us-ia",
+			"name": "Iowa",
+			"group": ["us"],
+		},
+		{
 			"id": "us-id",
 			"name": "Idaho",
 			"group": ["us"],
@@ -1270,13 +1275,8 @@ var data = {
 			"group": ["us"],
 		},
 		{
-			"id": "us-ia",
-			"name": "Iowa",
-			"group": ["us"],
-		},
-		{
-			"id": "us-id",
-			"name": "Idaho",
+			"id": "us-in",
+			"name": "Indiana",
 			"group": ["us"],
 		},
 		{
@@ -1295,8 +1295,8 @@ var data = {
 			"group": ["us"],
 		},
 		{
-			"id": "us-me",
-			"name": "Maine",
+			"id": "us-ma",
+			"name": "Massachussetts",
 			"group": ["us"],
 		},
 		{
@@ -1305,8 +1305,8 @@ var data = {
 			"group": ["us"],
 		},
 		{
-			"id": "us-ma",
-			"name": "Massachussetts",
+			"id": "us-me",
+			"name": "Maine",
 			"group": ["us"],
 		},
 		{
@@ -1320,13 +1320,13 @@ var data = {
 			"group": ["us"],
 		},
 		{
-			"id": "us-ms",
-			"name": "Mississippi",
+			"id": "us-mo",
+			"name": "Missouri",
 			"group": ["us"],
 		},
 		{
-			"id": "us-mo",
-			"name": "Missouri",
+			"id": "us-ms",
+			"name": "Mississippi",
 			"group": ["us"],
 		},
 		{
@@ -1335,13 +1335,18 @@ var data = {
 			"group": ["us"],
 		},
 		{
-			"id": "us-ne",
-			"name": "Nebraska",
+			"id": "us-nc",
+			"name": "North Carolina",
 			"group": ["us"],
 		},
 		{
-			"id": "us-nv",
-			"name": "Nevada",
+			"id": "us-nd",
+			"name": "North Dakota",
+			"group": ["us"],
+		},
+		{
+			"id": "us-ne",
+			"name": "Nebraska",
 			"group": ["us"],
 		},
 		{
@@ -1360,18 +1365,13 @@ var data = {
 			"group": ["us"],
 		},
 		{
+			"id": "us-nv",
+			"name": "Nevada",
+			"group": ["us"],
+		},
+		{
 			"id": "us-ny",
 			"name": "New York",
-			"group": ["us"],
-		},
-		{
-			"id": "us-nc",
-			"name": "North Carolina",
-			"group": ["us"],
-		},
-		{
-			"id": "us-nd",
-			"name": "North Dakota",
 			"group": ["us"],
 		},
 		{
@@ -1425,13 +1425,13 @@ var data = {
 			"group": ["us"],
 		},
 		{
-			"id": "us-vt",
-			"name": "Vermont",
+			"id": "us-va",
+			"name": "Virginia",
 			"group": ["us"],
 		},
 		{
-			"id": "us-va",
-			"name": "Virginia",
+			"id": "us-vt",
+			"name": "Vermont",
 			"group": ["us"],
 		},
 		{
@@ -1440,13 +1440,13 @@ var data = {
 			"group": ["us"],
 		},
 		{
-			"id": "us-wv",
-			"name": "West Virginia",
+			"id": "us-wi",
+			"name": "Wisconsin",
 			"group": ["us"],
 		},
 		{
-			"id": "us-wi",
-			"name": "Wisconsin",
+			"id": "us-wv",
+			"name": "West Virginia",
 			"group": ["us"],
 		},
 		{
