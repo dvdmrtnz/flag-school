@@ -90,6 +90,11 @@ var data = {
 			"group": ["americas", "world"],
 		},
 		{
+			"id": "as",
+			"name": "American Samoa",
+			"group": ["oceania", "world"],
+		},
+		{
 			"id": "at",
 			"name": "Austria",
 			"group": ["eu", "europe", "world"],
@@ -98,6 +103,11 @@ var data = {
 			"id": "au",
 			"name": "Australia",
 			"group": ["oceania", "world"],
+		},
+		{
+			"id": "aw",
+			"name": "Aruba",
+			"group": ["americas", "world"],
 		},
 		{
 			"id": "az",
@@ -148,6 +158,11 @@ var data = {
 			"id": "bj",
 			"name": "Benin",
 			"group": ["africa", "world"],
+		},
+		{
+			"id": "bm",
+			"name": "Bermuda",
+			"group": ["americas", "world"],
 		},
 		{
 			"id": "bn",
@@ -218,6 +233,11 @@ var data = {
 			"id": "ci",
 			"name": "Côte d'Ivoire",
 			"group": ["africa", "world"],
+		},
+		{
+			"id": "ck",
+			"name": "Cook Islands",
+			"group": ["oceania", "world"],
 		},
 		{
 			"id": "cm",
@@ -515,6 +535,11 @@ var data = {
 			"group": ["oceania", "world"],
 		},
 		{
+			"id": "fo",
+			"name": "Faroe Islands",
+			"group": ["europe", "world"],
+		},
+		{
 			"id": "fr",
 			"name": "France",
 			"group": ["eu", "europe", "world"],
@@ -545,6 +570,16 @@ var data = {
 			"group": ["africa", "world"],
 		},
 		{
+			"id": "gi",
+			"name": "Gibraltar",
+			"group": ["europe", "world"],
+		},
+		{
+			"id": "gl",
+			"name": "Greenland",
+			"group": ["americas", "europe", "world"],
+		},
+		{
 			"id": "gm",
 			"name": "Gambia",
 			"group": ["africa", "world"],
@@ -570,6 +605,11 @@ var data = {
 			"group": ["americas", "world"],
 		},
 		{
+			"id": "gu",
+			"name": "Guam",
+			"group": ["oceania", "world"],
+		},
+		{
 			"id": "gw",
 			"name": "Guinea-Bissau",
 			"group": ["africa", "world"],
@@ -578,6 +618,11 @@ var data = {
 			"id": "gy",
 			"name": "Guyana",
 			"group": ["americas", "world"],
+		},
+		{
+			"id": "hk",
+			"name": "Hong Kong",
+			"group": ["asia", "world"],
 		},
 		{
 			"id": "hn",
@@ -613,6 +658,11 @@ var data = {
 			"id": "il",
 			"name": "Israel",
 			"group": ["asia", "world"],
+		},
+		{
+			"id": "im",
+			"name": "Isle of Man",
+			"group": ["europe", "world"],
 		},
 		{
 			"id": "in",
@@ -698,6 +748,11 @@ var data = {
 			"id": "kw",
 			"name": "Kuwait",
 			"group": ["asia", "world"],
+		},
+		{
+			"id": "ky",
+			"name": "Cayman Islands",
+			"group": ["americas", "world"],
 		},
 		{
 			"id": "kz",
@@ -807,6 +862,11 @@ var data = {
 		{
 			"id": "mn",
 			"name": "Mongolia",
+			"group": ["asia", "world"],
+		},
+		{
+			"id": "mo",
+			"name": "Macau",
 			"group": ["asia", "world"],
 		},
 		{
@@ -928,6 +988,11 @@ var data = {
 			"id": "pl",
 			"name": "Poland",
 			"group": ["eu", "europe", "world"],
+		},
+		{
+			"id": "pr",
+			"name": "Puerto Rico",
+			"group": ["americas", "world"],
 		},
 		{
 			"id": "pt",
@@ -1113,6 +1178,11 @@ var data = {
 			"id": "tv",
 			"name": "Tuvalu",
 			"group": ["oceania", "world"],
+		},
+		{
+			"id": "tw",
+			"name": "Taiwan",
+			"group": ["asia", "world"],
 		},
 		{
 			"id": "tz",
@@ -1410,6 +1480,16 @@ var data = {
 			"group": ["americas", "world"],
 		},
 		{
+			"id": "vg",
+			"name": "British Virgin Islands",
+			"group": ["americas", "world"],
+		},
+		{
+			"id": "vi",
+			"name": "U.S. Virgin Islands",
+			"group": ["americas", "world"],
+		},
+		{
 			"id": "vn",
 			"name": "Vietnam",
 			"group": ["asia", "world"],
@@ -1423,6 +1503,12 @@ var data = {
 			"id": "ws",
 			"name": "Samoa",
 			"group": ["oceania", "world"],
+		},
+		{
+			// Kosovo does not have an official code
+			"id": "xk",
+			"name": "Kosovo",
+			"group": ["europe", "world"],
 		},
 		{
 			"id": "ye",
