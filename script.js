@@ -1,6 +1,17 @@
 
 $(document).ready(function(){
 
+	// Add service worker for offline playing
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('service-worker.js')
+		.then(registration => 
+		{
+			console.log("Service Worker registered"); 
+		}).catch(err => {
+			console.log('Service Worker registration failed: ', err);
+		})
+	}
+	
 	// Create a game
 	game = new Game();
 
